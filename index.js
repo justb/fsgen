@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const program = require('commander');
 var shell = require("shelljs");
 var fs = require("fs");
@@ -16,7 +18,7 @@ var fs = require("fs");
 // program.parse(process.argv);
 
 program
-    .command('create <dir>')
+    .arguments('<dir>')
     .option('-r, --recursive', 'Remove recursively')
     .action(function (dir, cmd) {
         shell.exec("create-react-app " + dir);
