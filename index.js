@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 const program = require('commander');
-var shell = require("shelljs");
-var fs = require("fs");
+const shell = require("shelljs");
+const fs = require("fs");
 
 // program
 //     .command('create <type> [name] [otherParams...]')
@@ -18,31 +18,37 @@ var fs = require("fs");
 // program.parse(process.argv);
 
 program
-    .arguments('<dir>')
+    .arguments('[dir]')
     .option('-r, --recursive', 'Remove recursively')
     .action(function (dir, cmd) {
-        shell.exec("create-react-app " + dir);
-        shell.cd(dir)
-        shell.exec('git clone git@github.com:justb/specification-front.git')
-        shell.exec('rm -rf ./specification-front/.git')
-        shell.exec('mv ./specification-front/.[!.]* . && mv ./specification-front/* .')
-        shell.exec('rm -rf ./specification-front')
+        if(dir){
+            shell.cd(dir)
+        }
         fs.readFile('package.json', 'utf8', (err, package) => {
             if (err) {
-
+                throw err
             } else {
+                shell.exec('git clone git@github.com:justb/specification-front.git')
+                shell.exec('rm -rf ./specification-front/.git')
+                shell.exec('mv ./specification-front/.[!.]* . && mv ./specification-front/* .')
+                shell.exec('rm -rf ./specification-front')
                 fs.readFile('husky.json', 'utf8', (err, husky) => {
                     if (err) {
-
+                        throw err
                     } else {
-                        fs.writeFile('package.json', JSON.stringify(Object.assign(JSON.parse(package),JSON.parse(husky))), (err) => {
+                        let pack = Object.assign(JSON.parse(package||'{}'),JSON.parse(husky))
+                        if(!pack.scripts){
+                            pack.scripts={}
+                        }
+                        pack.scripts["commit"]='git-cz'
+                        fs.writeFile('package.json', JSON.stringify(pack), (err) => {
                             if (err) throw err;
                             shell.exec('rm -rf husky.json')
+                            shell.exec('yarn add lint-staged husky eslint babel-eslint eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-config-react-app eslint-plugin-react eslint-config-prettier eslint-plugin-prettier commitizen stylus-supremacy')
                             console.log('It is finished!');
                         });
                     }
                 })
-                
             }
         })
         // console.log('remove ' + dir + (cmd.recursive ? ' recursively' : ''))
