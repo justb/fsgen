@@ -44,7 +44,7 @@ program
                         fs.writeFile('package.json', JSON.stringify(pack), (err) => {
                             if (err) throw err;
                             shell.exec('rm -rf husky.json')
-                            shell.exec('yarn add lint-staged husky eslint babel-eslint eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-config-react-app eslint-plugin-react eslint-config-prettier eslint-plugin-prettier commitizen stylus-supremacy')
+                            shell.exec('yarn add lint-staged husky eslint babel-eslint eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-config-react-app eslint-plugin-react prettier eslint-config-prettier eslint-plugin-prettier commitizen stylus-supremacy')
                             console.log('It is finished!');
                         });
                     }
