@@ -14,4 +14,4 @@ fsgen my-app
 fsgen
 ```
 
-Then you dir will add some files, such as `.eslint.js`, `.editorconfig` and so on.
+Then you folder will add some files, such as `.eslint.js`, `.editorconfig`, and `package.json` will be modified.
