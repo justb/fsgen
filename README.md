@@ -1,17 +1,18 @@
-#Introduction
-add code specification for react app
+# Introduction
+Add eslint and code auto-format at precommit hooks for your react app
 
-#Installtion
+# Installtion
 ```
 yarn global add fsgen
 npm i fsgen -g
 ```
-#Usage
+# Usage
 ```
+// Not in the project folder
 fsgen my-app
 
-// In the folder
+// In the project folder
 fsgen
 ```
 
-Then you folder will add some files, such as `.eslint.js`, `.editorconfig`, and `package.json` will be modified.
+Then you folder will add some files, such as `.eslint.js`, `.eslintignore`, `.editorconfig`, `.stylint.json`, and `package.json` will be modified.
