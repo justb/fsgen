@@ -1,12 +1,12 @@
-##Introduction
+# Introduction
 add code specification for react app
 
-##Installtion
+# Installtion
 ```
 yarn global add fsgen
 npm i fsgen -g
 ```
-##Usage
+# Usage
 ```
 fsgen my-app
 
