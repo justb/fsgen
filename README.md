@@ -13,7 +13,20 @@ fsgen my-app
 
 // In the project folder
 fsgen
+
+// Use yarn instead of npm
+fsgen -yarn
+
+// Add config for typescript
+fsgen -ts
+
+// Show help
+fsgen -h
+
+// Show version
+fsgen -V
 ```
 
 Then you folder will add some files, such as `.eslint.js`, `.eslintignore`, `.editorconfig`, `.jsconfig.json`, and `package.json` will be modified.
+
 We will add some node_modules, such as lint-staged husky commitizen eslint babel-eslint prettier eslint-config-prettier eslint-plugin-prettier.

@@ -5,9 +5,10 @@ const shell = require('shelljs')
 const fs = require('fs')
 
 program
+    .version('2.0.1')
     .arguments('[dir]')
     .option('-yarn, --yarn', 'use yarn instead of npm')
-    .option('-ts, --typescript', 'use eslint for typescript')
+    .option('-ts, --typescript', 'use typescript instead of javascript')
     .action(function(dir, cmd) {
         if (dir) {
             shell.cd(dir)
