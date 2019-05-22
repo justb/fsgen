@@ -1,29 +1,19 @@
 #!/usr/bin/env node
 
-const program = require('commander');
-const shell = require("shelljs");
-const fs = require("fs");
-
-// program
-//     .command('create <type> [name] [otherParams...]')
-//     .alias('c')
-//     .description('Generates new code')
-//     .action(function (type, name, otherParams) {
-//         console.log('type', type);
-//         console.log('name', name);
-//         console.log('other', otherParams);
-//         // 在这里执行具体的操作
-//     });
-
-// program.parse(process.argv);
+const program = require('commander')
+const shell = require('shelljs')
+const fs = require('fs')
 
 program
     .arguments('[dir]')
-    .option('-r, --recursive', 'Remove recursively')
-    .action(function (dir, cmd) {
-        if(dir){
+    .option('-yarn, --yarn', 'use yarn instead of npm')
+    .option('-ts, --typescript', 'use eslint for typescript')
+    .action(function(dir, cmd) {
+        if (dir) {
             shell.cd(dir)
         }
+        const isTs = cmd.typescript
+        const isYarn = cmd.yarn
         fs.readFile('package.json', 'utf8', (err, package) => {
             if (err) {
                 throw err
@@ -36,22 +26,29 @@ program
                     if (err) {
                         throw err
                     } else {
-                        let pack = Object.assign(JSON.parse(package||'{}'),JSON.parse(husky))
-                        if(!pack.scripts){
-                            pack.scripts={}
+                        let pack = Object.assign(JSON.parse(package || '{}'), JSON.parse(husky))
+                        if (!pack.scripts) {
+                            pack.scripts = {}
                         }
-                        pack.scripts["commit"]='git-cz'
-                        fs.writeFile('package.json', JSON.stringify(pack), (err) => {
-                            if (err) throw err;
+                        pack.scripts['commit'] = 'git-cz'
+                        fs.writeFile('package.json', JSON.stringify(pack), err => {
+                            if (err) throw err
                             shell.exec('rm -rf husky.json')
-                            shell.exec('yarn add lint-staged husky eslint babel-eslint eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-config-react-app eslint-plugin-react prettier eslint-config-prettier eslint-plugin-prettier commitizen stylus-supremacy')
-                            console.log('It is finished!');
-                        });
+                            // eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-config-react-app eslint-plugin-react
+                            let nodeModules =
+                                ' lint-staged husky commitizen eslint babel-eslint prettier eslint-config-prettier eslint-plugin-prettier '
+                            if (isTs) {
+                                nodeModules += ' @typescript-eslint/eslint-plugin @typescript-eslint/parser'
+                                shell.exec('mv ./ts/.[!.]* . && mv ./ts/* .')
+                            }
+                            shell.exec('rm -rf ts')
+                            shell.exec((isYarn ? 'yarn add' : 'npm i') + nodeModules)
+                            console.log('It is finished!')
+                        })
                     }
                 })
             }
         })
-        // console.log('remove ' + dir + (cmd.recursive ? ' recursively' : ''))
     })
 
 program.parse(process.argv)
