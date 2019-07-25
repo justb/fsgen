@@ -15,10 +15,13 @@ fsgen my-app
 fsgen
 
 // Use yarn instead of npm
-fsgen -yarn
+fsgen -y
 
 // Add config for typescript
-fsgen -ts
+fsgen -t
+
+// Add config for cra
+fsgen -c
 
 // Show help
 fsgen -h

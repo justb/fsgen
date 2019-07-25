@@ -5,7 +5,7 @@ const shell = require('shelljs')
 const fs = require('fs')
 
 program
-    .version('2.1.0')
+    .version('2.1.1')
     .arguments('[dir]')
     .option('-y, --yarn', 'use yarn instead of npm')
     .option('-t, --typescript', 'use typescript instead of javascript')
