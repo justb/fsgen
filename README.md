@@ -27,6 +27,6 @@ fsgen -h
 fsgen -V
 ```
 
-Then you folder will add some files, such as `.eslint.js`, `.eslintignore`, `.editorconfig`, `.jsconfig.json`, and `package.json` will be modified.
+Then you folder will add some files, such as `.eslint.js`, `.eslintignore`, `.editorconfig`, and `package.json` will be modified.
 
-We will add some node_modules, such as lint-staged husky commitizen eslint babel-eslint prettier eslint-config-prettier eslint-plugin-prettier.
+We will add some node_modules, such as lint-staged husky commitizen prettier eslint-config-prettier eslint-plugin-prettier.

@@ -1,6 +1,6 @@
 {
   "name": "fsgen",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "dependencies": {
     "commander": "^2.20.0",
     "shelljs": "^0.8.3"
