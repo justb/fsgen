@@ -5,7 +5,7 @@ const shell = require('shelljs')
 const fs = require('fs')
 
 program
-    .version('2.0.1')
+    .version('2.0.2')
     .arguments('[dir]')
     .option('-yarn, --yarn', 'use yarn instead of npm')
     .option('-ts, --typescript', 'use typescript instead of javascript')
@@ -35,11 +35,11 @@ program
                         fs.writeFile('package.json', JSON.stringify(pack), err => {
                             if (err) throw err
                             shell.exec('rm -rf husky.json')
-                            // eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-config-react-app eslint-plugin-react
+                            // eslint babel-eslint eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-config-react-app eslint-plugin-react 
                             let nodeModules =
-                                ' lint-staged husky commitizen eslint babel-eslint prettier eslint-config-prettier eslint-plugin-prettier '
+                                ' lint-staged@8.2.1 husky commitizen prettier eslint-config-prettier eslint-plugin-prettier '
                             if (isTs) {
-                                nodeModules += ' @typescript-eslint/eslint-plugin @typescript-eslint/parser'
+                                nodeModules += '@typescript-eslint/eslint-plugin @typescript-eslint/parser'
                                 shell.exec('mv ./ts/.[!.]* . && mv ./ts/* .')
                             }
                             shell.exec('rm -rf ts')
