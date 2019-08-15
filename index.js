@@ -41,7 +41,7 @@ program
                             let nodeModules =
                                 ' lint-staged@8.2.1 husky commitizen prettier eslint-config-prettier eslint-plugin-prettier '
                             if (!isCra){
-                                nodeModules += ' eslint babel-eslint eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-config-react-app eslint-plugin-react '
+                                nodeModules += ' eslint babel-eslint eslint-plugin-react-hooks eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-config-react-app eslint-plugin-react '
                             }
                             if (isTs) {
                                 nodeModules += '@typescript-eslint/eslint-plugin @typescript-eslint/parser'
