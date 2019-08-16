@@ -1,5 +1,5 @@
 # Introduction
-Add eslint prettier and code auto-format at precommit hooks for your app(include typescript)
+Add eslint prettier and code auto-format at precommit hooks for your app(include typescript), react and scss default.
 
 # Installtion
 ```
@@ -30,6 +30,6 @@ fsgen -h
 fsgen -V
 ```
 
-Then you folder will add some files, such as `.eslint.js`, `.eslintignore`, `.editorconfig`, and `package.json` will be modified.
+Then you folder will add some files, such as `.eslint.js`, `.eslintignore`, `.editorconfig`, `.stylelintrc.js`, and `package.json` will be modified.
 
-We will add some node_modules, such as lint-staged husky commitizen prettier eslint-config-prettier eslint-plugin-prettier.
+We will add some node_modules to support this, such as lint-staged husky commitizen prettier eslint-config-prettier eslint-plugin-prettier.
