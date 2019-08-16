@@ -34,16 +34,19 @@ program
                             pack.scripts = {}
                         }
                         pack.scripts['commit'] = 'git-cz'
+                        pack.scripts['eslint'] = 'eslint --cache --fix "app/**/*.{js,jsx}"'
+                        pack.scripts['stylelint'] = 'stylelint "app/**/*.{css,less,scss,sss}" --fix'
                         fs.writeFile('package.json', JSON.stringify(pack), err => {
                             if (err) throw err
                             shell.exec('rm -rf husky.json')
-                            // eslint babel-eslint eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-config-react-app eslint-plugin-react 
+                            // eslint babel-eslint eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-config-react-app eslint-plugin-react
                             let nodeModules =
                                 ' lint-staged@8.2.1 husky commitizen prettier eslint-config-prettier eslint-plugin-prettier '
                             let scss = ' stylelint stylelint-config-recommended '
                             nodeModules += scss
-                            if (!isCra){
-                                nodeModules += ' eslint babel-eslint eslint-plugin-react-hooks eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-config-react-app eslint-plugin-react '
+                            if (!isCra) {
+                                nodeModules +=
+                                    ' eslint babel-eslint eslint-plugin-react-hooks eslint-plugin-import eslint-plugin-flowtype eslint-plugin-jsx-a11y eslint-config-react-app eslint-plugin-react '
                             }
                             if (isTs) {
                                 nodeModules += '@typescript-eslint/eslint-plugin @typescript-eslint/parser'
