@@ -33,3 +33,6 @@ fsgen -V
 Then you folder will add some files, such as `.eslint.js`, `.eslintignore`, `.editorconfig`, and `package.json` will be modified.
 
 We will add some node_modules, such as lint-staged husky commitizen prettier eslint-config-prettier eslint-plugin-prettier.
+
+### vscode-eslint configuration
+https://github.com/microsoft/vscode-eslint
